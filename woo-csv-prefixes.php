@@ -7,7 +7,7 @@ function wc_csv_export_modify_column_headers( $column_headers ) {
   // === HEADERS / COLUMN NAMES GO HERE === //
 		'prefixed_order_num' => 'Pre_Order_Number',
 		'prefixed_user_id' => 'Pre_User_Id',
-		// add other column headers here in the format column_key => Column Name
+		'plain_order_date' => 'Plain_Order_Date',
 	);
  
 	return array_merge( $column_headers, $new_headers );
@@ -21,7 +21,7 @@ function wc_csv_export_modify_row_data( $order_data, $order, $csv_generator ) {
   // === I've used "WEB-" as my prefix so order number "12345" is output as "WEB-12345" === //
 		'prefixed_order_num' => 'WEB-' . $order->get_id(),
 		'prefixed_user_id' => 'WEB-' . $order->get_user_id(),
-		// add other row data here in the format column_key => data
+		'plain_order_date' => date_i18n( 'mdY', strtotime($order->order_date) ),
 	);
  
 	$new_order_data   = array();
